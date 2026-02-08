@@ -3,143 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NIGHT BLACK VIEW | PRO TERMINAL v6.0</title>
+    <title>Professional Trading Terminal | Delta Style</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&display=swap');
-        body { background: #010409; color: #f0f6fc; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
-        .glass-card { background: rgba(13, 17, 23, 0.8); backdrop-filter: blur(10px); border: 1px solid #30363d; border-radius: 20px; transition: 0.3s; }
-        .glass-card:hover { border-color: #3b82f6; }
-        .blue-glow { box-shadow: 0 0 20px rgba(59, 130, 246, 0.15); }
-        .hidden { display: none !important; }
-        #chat-stream::-webkit-scrollbar { display: none; }
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Inter:wght@400;700&display=swap');
+        body { background-color: #0b0e11; color: #eaecef; font-family: 'Inter', sans-serif; overflow: hidden; }
+        .border-gray { border: 1px solid #1e2329; }
+        .bg-card { background-color: #161a1e; }
+        .text-green { color: #00b15d; }
+        .text-red { color: #ff3b3b; }
+        .order-book-row:hover { background-color: #1e2329; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-thumb { background: #2b3139; }
     </style>
 </head>
-<body class="pb-28">
+<body class="h-screen flex flex-col">
 
-    <nav class="sticky top-0 z-[100] bg-[#010409]/80 backdrop-blur-md border-b border-[#30363d] p-4">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <h1 class="text-xl font-extrabold tracking-tighter uppercase">NIGHT <span class="text-blue-500">BLACK VIEW</span></h1>
-            <div class="flex items-center gap-3">
-                <div class="flex items-center gap-1.5 px-3 py-1 bg-green-500/10 border border-green-500/20 rounded-full">
-                    <div class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
-                    <span class="text-[9px] font-bold text-green-500">AI SENTINEL ONLINE</span>
+    <header class="h-12 border-b border-gray flex items-center justify-between px-4 bg-card">
+        <div class="flex items-center gap-6">
+            <span class="font-bold text-blue-500 tracking-tighter text-lg uppercase">Trading<span class="text-white">Terminal</span></span>
+            <div class="flex gap-4 text-xs">
+                <div class="flex flex-col">
+                    <span class="text-gray-500">ETH/USDT</span>
+                    <span class="text-green font-bold">2,456.78</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-gray-500">24h Change</span>
+                    <span class="text-red">-1.24%</span>
                 </div>
             </div>
         </div>
-    </nav>
+        <div class="flex gap-4 text-sm text-gray-400">
+            <i class="fa-solid fa-bell"></i>
+            <i class="fa-solid fa-user-circle"></i>
+        </div>
+    </header>
 
-    <main class="max-w-5xl mx-auto p-4 space-y-6 mt-4">
+    <div class="flex flex-1 overflow-hidden">
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="glass-card p-6 md:col-span-2 flex justify-between items-end">
-                <div>
-                    <h3 class="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-1">Live Market Trend</h3>
-                    <p id="trend-status" class="text-3xl font-extrabold tracking-tighter">INITIALIZING...</p>
+        <aside class="w-64 border-r border-gray flex flex-col bg-card">
+            <div class="p-2 text-[10px] font-bold border-b border-gray uppercase tracking-widest text-gray-500">Order Book</div>
+            <div class="flex-1 overflow-y-auto font-mono text-[11px] p-2">
+                <div class="flex justify-between text-gray-500 mb-1">
+                    <span>Price</span>
+                    <span>Amount</span>
                 </div>
-                <div class="text-right">
-                    <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Sentiment Index</p>
-                    <p id="sentiment-val" class="text-xl font-mono font-bold text-blue-400">--/100</p>
+                <div class="space-y-0.5 mb-2">
+                    <div class="flex justify-between text-red"><span>2457.10</span><span>0.456</span></div>
+                    <div class="flex justify-between text-red"><span>2457.00</span><span>1.201</span></div>
+                    <div class="flex justify-between text-red"><span>2456.90</span><span>0.884</span></div>
                 </div>
-            </div>
-            <div class="glass-card p-6 flex flex-col justify-center border-b-4 border-blue-600">
-                <p class="text-[10px] text-gray-500 font-bold uppercase mb-1 text-center">Data Science Node</p>
-                <p class="text-xs text-center opacity-70">Delta liquidity synced. Analyzing Ethereum volatility.</p>
-            </div>
-        </div>
-
-        <div class="glass-card p-6">
-            <h3 class="text-xs font-bold uppercase text-blue-500 mb-6 tracking-widest">Connect with Social Ecosystem</h3>
-            <div class="grid grid-cols-4 md:grid-cols-5 gap-4">
-                <a href="YOUR_YOUTUBE_LINK" target="_blank" class="flex flex-col items-center gap-2 p-3 hover:bg-white/5 rounded-2xl transition-all">
-                    <i class="fa-brands fa-youtube text-2xl text-red-500"></i>
-                    <span class="text-[9px] font-bold uppercase">YouTube</span>
-                </a>
-                <a href="YOUR_INSTAGRAM_LINK" target="_blank" class="flex flex-col items-center gap-2 p-3 hover:bg-white/5 rounded-2xl transition-all">
-                    <i class="fa-brands fa-instagram text-2xl text-pink-500"></i>
-                    <span class="text-[9px] font-bold uppercase">Instagram</span>
-                </a>
-                <a href="YOUR_TELEGRAM_LINK" target="_blank" class="flex flex-col items-center gap-2 p-3 hover:bg-white/5 rounded-2xl transition-all">
-                    <i class="fa-brands fa-telegram text-2xl text-blue-400"></i>
-                    <span class="text-[9px] font-bold uppercase">Telegram</span>
-                </a>
-                <a href="YOUR_X_LINK" target="_blank" class="flex flex-col items-center gap-2 p-3 hover:bg-white/5 rounded-2xl transition-all">
-                    <i class="fa-brands fa-x-twitter text-2xl"></i>
-                    <span class="text-[9px] font-bold uppercase">X / Twitter</span>
-                </a>
-            </div>
-        </div>
-
-        <div class="glass-card overflow-hidden blue-glow">
-            <div class="p-4 border-b border-[#30363d] flex justify-between items-center bg-[#161b22]">
-                <div class="flex items-center gap-2">
-                    <img src="https://www.delta.exchange/wp-content/uploads/2021/01/logo.png" class="h-3 opacity-60">
-                    <span class="text-xs font-bold uppercase text-gray-400">ETHUSDT | DELTA EXCHANGE</span>
+                <div class="text-center py-1 border-y border-gray my-2 text-sm font-bold">2,456.78</div>
+                <div class="space-y-0.5">
+                    <div class="flex justify-between text-green"><span>2456.60</span><span>2.110</span></div>
+                    <div class="flex justify-between text-green"><span>2456.50</span><span>0.567</span></div>
+                    <div class="flex justify-between text-green"><span>2456.40</span><span>1.980</span></div>
                 </div>
             </div>
-            <div id="chart_container" class="h-[450px] w-full bg-[#0d1117]"></div>
-            <div class="p-4 bg-[#161b22]">
-                <button onclick="window.open('YOUR_DELTA_LINK_HERE', '_blank')" class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-xl font-bold text-xs uppercase tracking-[0.2em] transition-all">
-                    Trade on Delta Exchange <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
-                </button>
-            </div>
-        </div>
+        </aside>
 
-        <div class="glass-card p-6 flex flex-col h-[400px]">
-            <h3 class="text-xs font-bold uppercase text-blue-500 mb-4 tracking-widest">NIGHT BLACK VIEW AI</h3>
-            <div id="chat-stream" class="flex-1 overflow-y-auto space-y-4 mb-4 pr-2 text-xs opacity-80">
-                <div class="p-3 bg-blue-500/5 border border-blue-500/10 rounded-2xl">Terminal Initialized. Monitoring ETH flow on Delta. Ready for commands, Akshay.</div>
+        <main class="flex-1 flex flex-col bg-[#0b0e11]">
+            <div id="tv_chart" class="flex-1"></div>
+            
+            <div class="h-48 border-t border-gray bg-card flex flex-col">
+                <div class="flex gap-6 px-4 border-b border-gray text-[10px] font-bold uppercase py-2">
+                    <span class="text-blue-500 border-b-2 border-blue-500 pb-2">Open Positions</span>
+                    <span class="text-gray-500">Order History</span>
+                    <span class="text-gray-500">Trade History</span>
+                </div>
+                <div class="p-4 text-xs text-gray-600 text-center mt-4">
+                    No active positions found. Execute a trade to see it here.
+                </div>
             </div>
-            <div class="flex gap-3">
-                <input type="text" id="ai-input" placeholder="Query: 'Market Status' or 'Trend'..." class="flex-1 bg-[#0d1117] border border-[#30363d] p-4 rounded-2xl outline-none text-xs focus:border-blue-500 transition-all">
-                <button onclick="handleQuery()" class="bg-blue-600 w-14 rounded-2xl flex items-center justify-center active:scale-90 transition-all shadow-lg shadow-blue-600/20"><i class="fa-solid fa-paper-plane"></i></button>
-            </div>
-        </div>
+        </main>
 
-    </main>
+        <aside class="w-72 border-l border-gray bg-card p-4">
+            <div class="flex mb-6 bg-[#0b0e11] rounded-lg p-1">
+                <button class="flex-1 py-2 text-xs font-bold bg-[#1e2329] rounded-md text-green">BUY</button>
+                <button class="flex-1 py-2 text-xs font-bold text-gray-500">SELL</button>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="space-y-1">
+                    <label class="text-[10px] text-gray-500 uppercase font-bold">Order Type</label>
+                    <select class="w-full bg-[#0b0e11] border border-gray p-2 rounded text-xs outline-none">
+                        <option>Limit</option>
+                        <option>Market</option>
+                    </select>
+                </div>
+                <div class="space-y-1">
+                    <label class="text-[10px] text-gray-500 uppercase font-bold">Price (USDT)</label>
+                    <input type="text" value="2456.78" class="w-full bg-[#0b0e11] border border-gray p-2 rounded text-xs outline-none focus:border-blue-500">
+                </div>
+                <div class="space-y-1">
+                    <label class="text-[10px] text-gray-500 uppercase font-bold">Amount (ETH)</label>
+                    <input type="text" placeholder="0.00" class="w-full bg-[#0b0e11] border border-gray p-2 rounded text-xs outline-none focus:border-blue-500">
+                </div>
+                
+                <div class="pt-4">
+                    <button class="w-full bg-green text-black font-bold py-3 rounded-lg text-xs uppercase tracking-widest shadow-lg shadow-green-900/20">
+                        Place Buy Order
+                    </button>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-gray grid grid-cols-4 gap-2 opacity-50">
+                <a href="#" class="text-center hover:text-blue-500"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" class="text-center hover:text-pink-500"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="text-center hover:text-blue-400"><i class="fa-brands fa-telegram"></i></a>
+                <a href="#" class="text-center hover:text-white"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </aside>
+    </div>
 
     <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
     <script>
-        window.onload = () => {
-            new TradingView.widget({
-                "autosize": true, "symbol": "DELTA:ETHUSDT", "interval": "15",
-                "theme": "dark", "container_id": "chart_container", "style": "1",
-                "backgroundColor": "#0d1117", "gridColor": "rgba(48, 54, 61, 0.2)"
-            });
-            syncData();
-        };
-
-        async function syncData() {
-            try {
-                const res = await fetch('https://api.alternative.me/fng/');
-                const data = await res.json();
-                const v = data.data[0].value;
-                document.getElementById('sentiment-val').innerText = v + "/100";
-                const mood = document.getElementById('trend-status');
-                if(v > 50) { mood.innerText = "BULLISH"; mood.style.color = "#238636"; }
-                else { mood.innerText = "BEARISH"; mood.style.color = "#da3633"; }
-            } catch(e) { console.log("AI Offline"); }
-        }
-
-        function handleQuery() {
-            const i = document.getElementById('ai-input');
-            const s = document.getElementById('chat-stream');
-            if(!i.value) return;
-
-            s.innerHTML += `<div class="text-blue-400 font-bold uppercase text-[9px] mt-4">AKSHAY: <span class="text-white font-normal lowercase">${i.value}</span></div>`;
-            
-            const txt = i.value.toLowerCase();
-            let reply = "Processing data science nodes... Ask about 'Trend' or 'Delta'.";
-            if(txt.includes("trend") || txt.includes("market")) reply = "Current analysis indicates " + document.getElementById('trend-status').innerText + " momentum. Fear/Greed is at " + document.getElementById('sentiment-val').innerText + ".";
-            if(txt.includes("delta")) reply = "Delta terminal bridge is active. Liquidity levels for ETHUSDT are optimal for trade execution.";
-
-            setTimeout(() => {
-                s.innerHTML += `<div class="p-3 bg-white/5 border border-white/5 rounded-2xl mt-2 italic">NBV-AI: ${reply}</div>`;
-                s.scrollTop = s.scrollHeight;
-            }, 600);
-            i.value = "";
-        }
+        new TradingView.widget({
+            "autosize": true,
+            "symbol": "DELTA:ETHUSDT",
+            "interval": "15",
+            "timezone": "Etc/UTC",
+            "theme": "dark",
+            "style": "1",
+            "locale": "en",
+            "enable_publishing": false,
+            "hide_top_toolbar": false,
+            "hide_legend": false,
+            "container_id": "tv_chart",
+            "backgroundColor": "#0b0e11",
+            "gridColor": "rgba(42, 46, 57, 0.05)"
+        });
     </script>
 </body>
 </html>
