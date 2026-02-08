@@ -3,98 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akshay | Night Black View Portfolio</title>
+    <title>Akshay Nagwan | Professional Trading Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap');
-        body { background: #0b0e11; color: #eaecef; font-family: 'Plus Jakarta Sans', sans-serif; }
-        .glass { background: rgba(22, 26, 30, 0.8); backdrop-filter: blur(10px); border: 1px solid #2b3139; }
-        .section-active { display: block; animation: fadeIn 0.5s ease; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        body { background: #0b0e11; color: #eaecef; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .pro-card { background: #161a1e; border: 1px solid #2b3139; border-radius: 24px; transition: 0.3s; }
+        .pro-card:hover { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59, 130, 246, 0.1); }
+        .section-active { display: block; animation: slideUp 0.4s ease-out; }
         .section-hidden { display: none; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .social-icon:hover { color: #0052ff; transform: scale(1.2); }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .ticker-wrap { background: #000; border-bottom: 1px solid #1e2329; overflow: hidden; white-space: nowrap; }
+        .ticker-move { display: inline-block; animation: ticker 30s linear infinite; }
+        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
 
-    <nav class="sticky top-0 z-50 glass border-b border-[#2b3139] px-6 py-4 flex justify-between items-center">
-        <h1 class="font-extrabold text-lg tracking-tighter uppercase">NIGHT <span class="text-blue-500">BLACK VIEW</span></h1>
-        <div class="flex gap-6 text-sm">
-            <button onclick="showSection('home')" class="hover:text-blue-500"><i class="fa-solid fa-house"></i></button>
-            <button onclick="showSection('contact')" class="hover:text-blue-500"><i class="fa-solid fa-envelope"></i></button>
-            <button onclick="showSection('terms')" class="hover:text-blue-500"><i class="fa-solid fa-scale-balanced"></i></button>
+    <div class="ticker-wrap py-2 text-[10px] font-bold text-blue-500 uppercase tracking-widest">
+        <div class="ticker-move">
+            BTC/USDT: $98,450.20 (+1.2%) &nbsp;&nbsp; | &nbsp;&nbsp; ETH/USDT: $2,456.78 (-0.5%) &nbsp;&nbsp; | &nbsp;&nbsp; SOL/USDT: $142.10 (+3.4%) &nbsp;&nbsp; | &nbsp;&nbsp; DATA SCIENCE SYNC ACTIVE...
+        </div>
+    </div>
+
+    <nav class="sticky top-0 z-50 bg-[#0b0e11]/90 backdrop-blur-lg border-b border-[#2b3139] px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-black">A</div>
+            <h1 class="font-extrabold tracking-tighter uppercase text-sm">Night <span class="text-blue-500">Black View</span></h1>
+        </div>
+        <div class="flex gap-4 md:gap-8 text-[11px] font-bold uppercase tracking-tighter text-gray-400">
+            <button onclick="showSection('home')" class="hover:text-blue-500 flex flex-col items-center gap-1"><i class="fa-solid fa-house"></i><span>Home</span></button>
+            <button onclick="showSection('contact')" class="hover:text-blue-500 flex flex-col items-center gap-1"><i class="fa-solid fa-paper-plane"></i><span>Contact</span></button>
+            <button onclick="showSection('terms')" class="hover:text-blue-500 flex flex-col items-center gap-1"><i class="fa-solid fa-file-contract"></i><span>Terms</span></button>
         </div>
     </nav>
 
-    <main class="flex-1 max-w-5xl mx-auto w-full p-4 md:p-8">
+    <main class="flex-1 max-w-6xl mx-auto w-full p-4 md:p-10">
 
-        <section id="home" class="section-active space-y-8">
-            <div class="text-center py-10">
-                <h2 class="text-4xl font-extrabold mb-2">Akshay Nagwan</h2>
-                <p class="text-gray-500 text-sm uppercase tracking-widest font-bold">Data Scientist & Professional Trader</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="glass p-6 rounded-3xl border-l-4 border-blue-500">
-                    <h3 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">Market Sentiment</h3>
-                    <div class="flex justify-between items-end">
-                        <p id="sentiment-text" class="text-2xl font-black">ANALYZING...</p>
-                        <p id="sentiment-val" class="font-mono text-blue-400">--/100</p>
+        <section id="home" class="section-active space-y-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="space-y-6">
+                    <span class="bg-blue-600/10 text-blue-500 px-3 py-1 rounded-full text-[10px] font-bold border border-blue-500/20">TRADING & DATA SCIENCE</span>
+                    <h2 class="text-5xl font-extrabold leading-tight">Mastering Markets Through <span class="text-blue-500">Data.</span></h2>
+                    <p class="text-gray-400 text-sm leading-relaxed max-w-md">Professional Ethereum trader using advanced SMC and Pine Script strategies on Delta Exchange. Combining Data Science insights with real-time execution.</p>
+                    <div class="flex gap-4">
+                        <button onclick="showSection('contact')" class="bg-blue-600 px-6 py-3 rounded-xl font-bold text-xs uppercase hover:bg-blue-700 transition-all">Start Collaboration</button>
+                        <button onclick="window.open('YOUR_DELTA_LINK')" class="border border-[#2b3139] px-6 py-3 rounded-xl font-bold text-xs uppercase hover:bg-white/5 transition-all">Trade Delta</button>
                     </div>
                 </div>
-                <div class="glass p-6 rounded-3xl border-l-4 border-purple-500">
-                    <h3 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">Active Exchange</h3>
-                    <p class="text-lg font-bold">Delta Exchange</p>
-                    <p class="text-xs text-gray-500 mt-1">Directly synced via API</p>
+                <div class="pro-card p-8 flex flex-col justify-center gap-6">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-xs font-bold text-gray-500 uppercase tracking-widest">Market Sentiment Engine</h3>
+                        <i class="fa-solid fa-robot text-blue-500"></i>
+                    </div>
+                    <div>
+                        <p id="sentiment-text" class="text-3xl font-black mb-1">STABLE</p>
+                        <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                            <div id="sentiment-bar" class="bg-blue-600 h-full transition-all duration-1000" style="width: 50%"></div>
+                        </div>
+                        <p class="text-[10px] text-gray-500 mt-3 uppercase font-bold tracking-tighter">Current Fear/Greed Index: <span id="sentiment-val" class="text-blue-400">--</span></p>
+                    </div>
                 </div>
             </div>
 
-            <div class="space-y-4">
-                <h3 class="text-xs font-bold uppercase tracking-widest text-blue-500">Latest Trading Insights</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="glass rounded-3xl overflow-hidden aspect-video">
+            <div class="space-y-6 pt-10">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-xs font-bold uppercase tracking-widest text-blue-500">YouTube Insights</h3>
+                    <a href="YOUR_YT_LINK" class="text-[10px] font-bold hover:underline">VIEW ALL VIDEOS</a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="md:col-span-2 pro-card overflow-hidden aspect-video relative group">
                         <iframe class="w-full h-full" src="https://www.youtube.com/embed/YOUR_VIDEO_ID_1" frameborder="0" allowfullscreen></iframe>
                     </div>
-                    <div class="glass rounded-3xl overflow-hidden aspect-video">
-                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2" frameborder="0" allowfullscreen></iframe>
+                    <div class="space-y-4">
+                        <div class="pro-card p-4 aspect-video overflow-hidden">
+                            <iframe class="w-full h-full rounded-xl" src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2" frameborder="0"></iframe>
+                        </div>
+                        <div class="pro-card p-4 aspect-video overflow-hidden">
+                            <iframe class="w-full h-full rounded-xl" src="https://www.youtube.com/embed/YOUR_VIDEO_ID_3" frameborder="0"></iframe>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="section-hidden space-y-6 text-center py-10">
-            <h2 class="text-2xl font-bold">Get In Touch</h2>
-            <div class="glass p-8 rounded-3xl max-w-md mx-auto space-y-4">
-                <input type="text" placeholder="Your Name" class="w-full bg-[#0b0e11] border border-[#2b3139] p-4 rounded-xl outline-none focus:border-blue-500">
-                <textarea placeholder="Message" class="w-full bg-[#0b0e11] border border-[#2b3139] p-4 rounded-xl h-32 outline-none focus:border-blue-500"></textarea>
-                <button class="w-full bg-blue-600 font-bold py-4 rounded-xl">Send Message</button>
+        <section id="contact" class="section-hidden py-10">
+            <div class="max-w-2xl mx-auto space-y-8 text-center">
+                <h2 class="text-3xl font-bold">Connect for Collaboration</h2>
+                <div class="pro-card p-10 space-y-4 text-left">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input type="text" placeholder="Name" class="bg-[#0b0e11] border border-[#2b3139] p-4 rounded-2xl outline-none focus:border-blue-500 text-sm">
+                        <input type="email" placeholder="Email" class="bg-[#0b0e11] border border-[#2b3139] p-4 rounded-2xl outline-none focus:border-blue-500 text-sm">
+                    </div>
+                    <textarea placeholder="Your Message" class="w-full bg-[#0b0e11] border border-[#2b3139] p-4 rounded-2xl h-40 outline-none focus:border-blue-500 text-sm"></textarea>
+                    <button class="w-full bg-blue-600 font-bold py-4 rounded-2xl hover:bg-blue-700 shadow-xl shadow-blue-600/20">Send Inquiry</button>
+                </div>
             </div>
         </section>
 
-        <section id="terms" class="section-hidden space-y-6 py-10">
-            <h2 class="text-2xl font-bold">Terms & Conditions</h2>
-            <div class="glass p-8 rounded-3xl text-xs text-gray-400 leading-relaxed space-y-4">
-                <p>1. <strong>Trading Risk:</strong> All information on this site is for educational purposes only. Trading cryptocurrency involves high risk.</p>
-                <p>2. <strong>AI Accuracy:</strong> Market sentiment analysis is powered by public APIs and may not be 100% accurate.</p>
-                <p>3. <strong>Data Privacy:</strong> We respect user privacy. No personal financial data is stored on this server.</p>
+        <section id="terms" class="section-hidden py-10">
+            <div class="max-w-3xl mx-auto pro-card p-10 space-y-6">
+                <h2 class="text-2xl font-bold border-b border-[#2b3139] pb-4">Terms & Conditions</h2>
+                <div class="text-sm text-gray-400 space-y-4 leading-relaxed">
+                    <p><strong>1. Financial Disclaimer:</strong> Trading Ethereum and other cryptocurrencies on platforms like Delta Exchange involves significant risk. The information provided here is for educational and data science portfolio purposes only.</p>
+                    <p><strong>2. Accuracy:</strong> Market sentiment is derived from live public APIs. Night Black View does not guarantee 100% accuracy of these signals.</p>
+                    <p><strong>3. Usage:</strong> Content from the YouTube videos and Pine Scripts shared here are owned by Akshay Nagwan.</p>
+                </div>
             </div>
         </section>
 
     </main>
 
-    <footer class="p-8 border-t border-[#2b3139] mt-auto">
-        <div class="flex justify-center gap-8 text-xl text-gray-500">
-            <a href="YOUR_YT" class="social-icon transition-all"><i class="fa-brands fa-youtube"></i></a>
-            <a href="YOUR_INSTA" class="social-icon transition-all"><i class="fa-brands fa-instagram"></i></a>
-            <a href="YOUR_TELE" class="social-icon transition-all"><i class="fa-brands fa-telegram"></i></a>
-            <a href="YOUR_X" class="social-icon transition-all"><i class="fa-brands fa-x-twitter"></i></a>
+    <footer class="bg-[#161a1e] border-t border-[#2b3139] p-10">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-center md:text-left">
+                <h1 class="font-extrabold uppercase text-lg">Night <span class="text-blue-500">Black View</span></h1>
+                <p class="text-[10px] text-gray-500 mt-1 font-bold uppercase tracking-[0.4em]">Evolving Data Science</p>
+            </div>
+            <div class="flex gap-10 text-xl text-gray-400">
+                <a href="YOUR_YT" class="hover:text-red-500 transition-all"><i class="fa-brands fa-youtube"></i></a>
+                <a href="YOUR_INSTA" class="hover:text-pink-500 transition-all"><i class="fa-brands fa-instagram"></i></a>
+                <a href="YOUR_TELE" class="hover:text-blue-400 transition-all"><i class="fa-brands fa-telegram"></i></a>
+                <a href="YOUR_X" class="hover:text-white transition-all"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
         </div>
-        <p class="text-center text-[10px] text-gray-600 mt-6 uppercase tracking-[0.3em]">© 2026 Night Black View</p>
+        <div class="text-center text-[9px] text-gray-600 mt-10 border-t border-white/5 pt-6 uppercase tracking-widest">
+            © 2026 Developed by Akshay Nagwan | All Rights Reserved
+        </div>
     </footer>
 
     <script>
-        // Section Navigation
         function showSection(id) {
             document.querySelectorAll('main section').forEach(s => {
                 s.classList.remove('section-active');
@@ -102,15 +141,16 @@
             });
             document.getElementById(id).classList.add('section-active');
             document.getElementById(id).classList.remove('section-hidden');
+            window.scrollTo(0,0);
         }
 
-        // Live Sentiment Sync
         async function fetchMarket() {
             try {
                 const res = await fetch('https://api.alternative.me/fng/');
                 const data = await res.json();
                 const val = data.data[0].value;
                 document.getElementById('sentiment-val').innerText = val + "/100";
+                document.getElementById('sentiment-bar').style.width = val + "%";
                 const text = document.getElementById('sentiment-text');
                 if(val > 50) { text.innerText = "GREEDY / BULLISH"; text.style.color = "#10b981"; }
                 else { text.innerText = "FEARFUL / BEARISH"; text.style.color = "#ef4444"; }
