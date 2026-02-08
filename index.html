@@ -3,160 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akshay Nagwan | Professional Trading Portfolio</title>
+    <title>Akshay Nagwan | Night Black View Terminal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
-        body { background: #0b0e11; color: #eaecef; font-family: 'Inter', sans-serif; overflow-x: hidden; }
-        .pro-card { background: #161a1e; border: 1px solid #2b3139; border-radius: 24px; transition: 0.3s; }
-        .pro-card:hover { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59, 130, 246, 0.1); }
-        .section-active { display: block; animation: slideUp 0.4s ease-out; }
-        .section-hidden { display: none; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .ticker-wrap { background: #000; border-bottom: 1px solid #1e2329; overflow: hidden; white-space: nowrap; }
-        .ticker-move { display: inline-block; animation: ticker 30s linear infinite; }
-        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        body { background: #05070a; color: #f1f5f9; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .bg-grid { background-image: radial-gradient(#1e293b 0.5px, transparent 0.5px); background-size: 30px 30px; }
+        .glass-card { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); border-radius: 24px; transition: 0.3s; }
+        .glass-card:hover { border-color: #3b82f6; box-shadow: 0 0 30px rgba(59, 130, 246, 0.1); }
+        .active-section { display: block; animation: fadeIn 0.6s ease-out; }
+        .hidden-section { display: none; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .neon-text { text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
     </style>
 </head>
-<body class="flex flex-col min-h-screen">
+<body class="bg-grid min-h-screen flex flex-col">
 
-    <div class="ticker-wrap py-2 text-[10px] font-bold text-blue-500 uppercase tracking-widest">
-        <div class="ticker-move">
-            BTC/USDT: $98,450.20 (+1.2%) &nbsp;&nbsp; | &nbsp;&nbsp; ETH/USDT: $2,456.78 (-0.5%) &nbsp;&nbsp; | &nbsp;&nbsp; SOL/USDT: $142.10 (+3.4%) &nbsp;&nbsp; | &nbsp;&nbsp; DATA SCIENCE SYNC ACTIVE...
+    <div class="w-full bg-blue-600/10 border-b border-blue-500/10 py-2 overflow-hidden whitespace-nowrap">
+        <div class="inline-block animate-pulse text-[10px] font-bold text-blue-500 uppercase tracking-[0.3em] px-4">
+            System Active: Data Science Node • Delta Exchange Synced • ETH/USDT Live Feed • Pine Script v5 Active
         </div>
     </div>
 
-    <nav class="sticky top-0 z-50 bg-[#0b0e11]/90 backdrop-blur-lg border-b border-[#2b3139] px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-black">A</div>
-            <h1 class="font-extrabold tracking-tighter uppercase text-sm">Night <span class="text-blue-500">Black View</span></h1>
+    <nav class="sticky top-0 z-[100] glass-card mx-4 mt-4 p-4 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center font-black text-white shadow-lg shadow-blue-600/30">N</div>
+            <h1 class="font-extrabold text-sm tracking-tighter uppercase">Night <span class="text-blue-500">Black View</span></h1>
         </div>
-        <div class="flex gap-4 md:gap-8 text-[11px] font-bold uppercase tracking-tighter text-gray-400">
-            <button onclick="showSection('home')" class="hover:text-blue-500 flex flex-col items-center gap-1"><i class="fa-solid fa-house"></i><span>Home</span></button>
-            <button onclick="showSection('contact')" class="hover:text-blue-500 flex flex-col items-center gap-1"><i class="fa-solid fa-paper-plane"></i><span>Contact</span></button>
-            <button onclick="showSection('terms')" class="hover:text-blue-500 flex flex-col items-center gap-1"><i class="fa-solid fa-file-contract"></i><span>Terms</span></button>
+        <div class="flex gap-4 md:gap-10 text-[10px] font-bold uppercase tracking-widest text-gray-400">
+            <button onclick="nav('home')" class="hover:text-blue-500 flex items-center gap-2"><i class="fa-solid fa-house"></i> <span class="hidden md:inline">Home</span></button>
+            <button onclick="nav('contact')" class="hover:text-blue-500 flex items-center gap-2"><i class="fa-solid fa-paper-plane"></i> <span class="hidden md:inline">Contact</span></button>
+            <button onclick="nav('terms')" class="hover:text-blue-500 flex items-center gap-2"><i class="fa-solid fa-file-contract"></i> <span class="hidden md:inline">Terms</span></button>
         </div>
     </nav>
 
-    <main class="flex-1 max-w-6xl mx-auto w-full p-4 md:p-10">
+    <main class="flex-1 max-w-7xl mx-auto w-full p-4 md:p-8">
 
-        <section id="home" class="section-active space-y-12">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div class="space-y-6">
-                    <span class="bg-blue-600/10 text-blue-500 px-3 py-1 rounded-full text-[10px] font-bold border border-blue-500/20">TRADING & DATA SCIENCE</span>
-                    <h2 class="text-5xl font-extrabold leading-tight">Mastering Markets Through <span class="text-blue-500">Data.</span></h2>
-                    <p class="text-gray-400 text-sm leading-relaxed max-w-md">Professional Ethereum trader using advanced SMC and Pine Script strategies on Delta Exchange. Combining Data Science insights with real-time execution.</p>
-                    <div class="flex gap-4">
-                        <button onclick="showSection('contact')" class="bg-blue-600 px-6 py-3 rounded-xl font-bold text-xs uppercase hover:bg-blue-700 transition-all">Start Collaboration</button>
-                        <button onclick="window.open('YOUR_DELTA_LINK')" class="border border-[#2b3139] px-6 py-3 rounded-xl font-bold text-xs uppercase hover:bg-white/5 transition-all">Trade Delta</button>
+        <section id="home" class="active-section space-y-8">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="lg:col-span-2 glass-card p-8 flex flex-col justify-center">
+                    <span class="text-blue-500 text-[10px] font-bold tracking-[0.5em] mb-4 uppercase">AI Trading Portfolio</span>
+                    <h2 class="text-4xl md:text-6xl font-black mb-6 leading-none">Engineering <br><span class="text-blue-500 neon-text">Market Alpha.</span></h2>
+                    <p class="text-gray-400 text-sm max-w-xl leading-relaxed">Developing intelligent trading systems and Pine Script strategies for Delta Exchange. Bridging the gap between raw data and profitable execution.</p>
+                </div>
+                <div class="glass-card p-8 border-l-4 border-blue-600">
+                    <h3 class="text-[10px] text-gray-500 font-bold uppercase mb-6 tracking-widest">Global Sentiment</h3>
+                    <div class="space-y-6">
+                        <p id="sent-text" class="text-2xl font-black italic">SYNCING...</p>
+                        <div class="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden">
+                            <div id="sent-bar" class="bg-blue-600 h-full transition-all duration-1000" style="width: 0%"></div>
+                        </div>
+                        <p class="text-[10px] text-gray-500 font-bold uppercase">Index: <span id="sent-val" class="text-blue-500">--</span></p>
                     </div>
                 </div>
-                <div class="pro-card p-8 flex flex-col justify-center gap-6">
-                    <div class="flex justify-between items-start">
-                        <h3 class="text-xs font-bold text-gray-500 uppercase tracking-widest">Market Sentiment Engine</h3>
-                        <i class="fa-solid fa-robot text-blue-500"></i>
-                    </div>
-                    <div>
-                        <p id="sentiment-text" class="text-3xl font-black mb-1">STABLE</p>
-                        <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
-                            <div id="sentiment-bar" class="bg-blue-600 h-full transition-all duration-1000" style="width: 50%"></div>
-                        </div>
-                        <p class="text-[10px] text-gray-500 mt-3 uppercase font-bold tracking-tighter">Current Fear/Greed Index: <span id="sentiment-val" class="text-blue-400">--</span></p>
-                    </div>
+            </div>
+
+            <div class="glass-card overflow-hidden h-[500px]">
+                <div class="p-4 border-b border-white/5 bg-white/5 flex justify-between items-center">
+                    <span class="text-[10px] font-bold text-gray-500 uppercase">ETHUSDT | Technical Terminal</span>
+                    <button onclick="window.open('YOUR_DELTA_LINK')" class="text-[10px] font-bold text-blue-500">OPEN ON DELTA <i class="fa-solid fa-external-link ml-1"></i></button>
+                </div>
+                <div id="tv-chart" class="w-full h-full"></div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="glass-card p-6 text-center">
+                    <i class="fa-brands fa-python text-2xl text-blue-400 mb-3"></i>
+                    <p class="text-[10px] font-bold uppercase tracking-widest">Python</p>
+                </div>
+                <div class="glass-card p-6 text-center">
+                    <i class="fa-solid fa-chart-line text-2xl text-green-400 mb-3"></i>
+                    <p class="text-[10px] font-bold uppercase tracking-widest">Pine Script</p>
+                </div>
+                <div class="glass-card p-6 text-center">
+                    <i class="fa-solid fa-brain text-2xl text-purple-400 mb-3"></i>
+                    <p class="text-[10px] font-bold uppercase tracking-widest">Data Science</p>
+                </div>
+                <div class="glass-card p-6 text-center">
+                    <i class="fa-solid fa-code text-2xl text-orange-400 mb-3"></i>
+                    <p class="text-[10px] font-bold uppercase tracking-widest">Web Dev</p>
                 </div>
             </div>
 
             <div class="space-y-6 pt-10">
-                <div class="flex justify-between items-center">
-                    <h3 class="text-xs font-bold uppercase tracking-widest text-blue-500">YouTube Insights</h3>
-                    <a href="YOUR_YT_LINK" class="text-[10px] font-bold hover:underline">VIEW ALL VIDEOS</a>
-                </div>
+                <h3 class="text-xs font-bold uppercase tracking-widest text-blue-500 border-l-2 border-blue-600 pl-4">YouTube Content</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="md:col-span-2 pro-card overflow-hidden aspect-video relative group">
-                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/YOUR_VIDEO_ID_1" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="pro-card p-4 aspect-video overflow-hidden">
-                            <iframe class="w-full h-full rounded-xl" src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2" frameborder="0"></iframe>
-                        </div>
-                        <div class="pro-card p-4 aspect-video overflow-hidden">
-                            <iframe class="w-full h-full rounded-xl" src="https://www.youtube.com/embed/YOUR_VIDEO_ID_3" frameborder="0"></iframe>
-                        </div>
-                    </div>
+                    <div class="glass-card aspect-video overflow-hidden"><iframe class="w-full h-full" src="https://www.youtube.com/embed/YOUR_ID_1" frameborder="0"></iframe></div>
+                    <div class="glass-card aspect-video overflow-hidden"><iframe class="w-full h-full" src="https://www.youtube.com/embed/YOUR_ID_2" frameborder="0"></iframe></div>
+                    <div class="glass-card aspect-video overflow-hidden"><iframe class="w-full h-full" src="https://www.youtube.com/embed/YOUR_ID_3" frameborder="0"></iframe></div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="section-hidden py-10">
-            <div class="max-w-2xl mx-auto space-y-8 text-center">
-                <h2 class="text-3xl font-bold">Connect for Collaboration</h2>
-                <div class="pro-card p-10 space-y-4 text-left">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" placeholder="Name" class="bg-[#0b0e11] border border-[#2b3139] p-4 rounded-2xl outline-none focus:border-blue-500 text-sm">
-                        <input type="email" placeholder="Email" class="bg-[#0b0e11] border border-[#2b3139] p-4 rounded-2xl outline-none focus:border-blue-500 text-sm">
-                    </div>
-                    <textarea placeholder="Your Message" class="w-full bg-[#0b0e11] border border-[#2b3139] p-4 rounded-2xl h-40 outline-none focus:border-blue-500 text-sm"></textarea>
-                    <button class="w-full bg-blue-600 font-bold py-4 rounded-2xl hover:bg-blue-700 shadow-xl shadow-blue-600/20">Send Inquiry</button>
-                </div>
+        <section id="contact" class="hidden-section py-20 text-center">
+            <h2 class="text-4xl font-black mb-10">Let's <span class="text-blue-500">Collaborate.</span></h2>
+            <div class="glass-card max-w-xl mx-auto p-8 space-y-4">
+                <input type="text" placeholder="Your Email" class="w-full bg-[#05070a] border border-white/10 p-4 rounded-2xl outline-none focus:border-blue-500">
+                <textarea placeholder="Your Message" class="w-full bg-[#05070a] border border-white/10 p-4 rounded-2xl h-40 outline-none focus:border-blue-500"></textarea>
+                <button class="w-full bg-blue-600 py-4 rounded-2xl font-bold uppercase tracking-widest shadow-lg shadow-blue-600/20">Send Request</button>
             </div>
         </section>
 
-        <section id="terms" class="section-hidden py-10">
-            <div class="max-w-3xl mx-auto pro-card p-10 space-y-6">
-                <h2 class="text-2xl font-bold border-b border-[#2b3139] pb-4">Terms & Conditions</h2>
-                <div class="text-sm text-gray-400 space-y-4 leading-relaxed">
-                    <p><strong>1. Financial Disclaimer:</strong> Trading Ethereum and other cryptocurrencies on platforms like Delta Exchange involves significant risk. The information provided here is for educational and data science portfolio purposes only.</p>
-                    <p><strong>2. Accuracy:</strong> Market sentiment is derived from live public APIs. Night Black View does not guarantee 100% accuracy of these signals.</p>
-                    <p><strong>3. Usage:</strong> Content from the YouTube videos and Pine Scripts shared here are owned by Akshay Nagwan.</p>
+        <section id="terms" class="hidden-section py-20">
+            <div class="glass-card p-10 max-w-3xl mx-auto space-y-6">
+                <h2 class="text-2xl font-bold uppercase tracking-tighter">Terms of Service</h2>
+                <div class="text-xs text-gray-500 space-y-4 leading-relaxed">
+                    <p><strong>1. Trading Risk:</strong> Any strategy shared here, including Pine Scripts, are for educational use. Crypto trading involves capital risk.</p>
+                    <p><strong>2. Ownership:</strong> Brand "Night Black View" and all coded content are properties of Akshay Nagwan.</p>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <footer class="bg-[#161a1e] border-t border-[#2b3139] p-10">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-center md:text-left">
+    <footer class="p-10 border-t border-white/5 bg-[#05070a]">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div>
                 <h1 class="font-extrabold uppercase text-lg">Night <span class="text-blue-500">Black View</span></h1>
-                <p class="text-[10px] text-gray-500 mt-1 font-bold uppercase tracking-[0.4em]">Evolving Data Science</p>
+                <p class="text-[9px] text-gray-500 uppercase tracking-widest mt-1">Building the Future of Trading AI</p>
             </div>
-            <div class="flex gap-10 text-xl text-gray-400">
+            <div class="flex gap-8 text-xl text-gray-500">
                 <a href="YOUR_YT" class="hover:text-red-500 transition-all"><i class="fa-brands fa-youtube"></i></a>
                 <a href="YOUR_INSTA" class="hover:text-pink-500 transition-all"><i class="fa-brands fa-instagram"></i></a>
                 <a href="YOUR_TELE" class="hover:text-blue-400 transition-all"><i class="fa-brands fa-telegram"></i></a>
                 <a href="YOUR_X" class="hover:text-white transition-all"><i class="fa-brands fa-x-twitter"></i></a>
             </div>
         </div>
-        <div class="text-center text-[9px] text-gray-600 mt-10 border-t border-white/5 pt-6 uppercase tracking-widest">
-            © 2026 Developed by Akshay Nagwan | All Rights Reserved
+        <div class="text-center text-[8px] text-gray-700 mt-10 uppercase tracking-[0.5em]">
+            © 2026 Night Black View | Developed by Akshay Nagwan
         </div>
     </footer>
 
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
     <script>
-        function showSection(id) {
-            document.querySelectorAll('main section').forEach(s => {
-                s.classList.remove('section-active');
-                s.classList.add('section-hidden');
-            });
-            document.getElementById(id).classList.add('section-active');
-            document.getElementById(id).classList.remove('section-hidden');
+        function nav(id) {
+            document.querySelectorAll('main section').forEach(s => { s.classList.replace('active-section', 'hidden-section'); });
+            document.getElementById(id).classList.replace('hidden-section', 'active-section');
             window.scrollTo(0,0);
         }
 
-        async function fetchMarket() {
+        window.onload = () => {
+            new TradingView.widget({
+                "autosize": true, "symbol": "DELTA:ETHUSDT", "interval": "15",
+                "theme": "dark", "container_id": "tv-chart", "style": "1",
+                "backgroundColor": "#05070a", "gridColor": "rgba(42, 46, 57, 0.05)"
+            });
+            fetchData();
+        };
+
+        async function fetchData() {
             try {
                 const res = await fetch('https://api.alternative.me/fng/');
                 const data = await res.json();
-                const val = data.data[0].value;
-                document.getElementById('sentiment-val').innerText = val + "/100";
-                document.getElementById('sentiment-bar').style.width = val + "%";
-                const text = document.getElementById('sentiment-text');
-                if(val > 50) { text.innerText = "GREEDY / BULLISH"; text.style.color = "#10b981"; }
-                else { text.innerText = "FEARFUL / BEARISH"; text.style.color = "#ef4444"; }
-            } catch(e) { console.log("Offline"); }
+                const v = data.data[0].value;
+                document.getElementById('sent-val').innerText = v + "/100";
+                document.getElementById('sent-bar').style.width = v + "%";
+                const t = document.getElementById('sent-text');
+                t.innerText = v > 50 ? "GREED / BULLISH" : "FEAR / BEARISH";
+                t.style.color = v > 50 ? "#10b981" : "#ef4444";
+            } catch(e) {}
         }
-        fetchMarket();
     </script>
 </body>
 </html>
