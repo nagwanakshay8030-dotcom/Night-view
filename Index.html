@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Night Black View | Ethereum Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background-color: #050505; color: #a5a5a5; font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; }
+        .neon-blue { text-shadow: 0 0 10px #3b82f6; color: #3b82f6; }
+    </style>
+</head>
+<body class="p-6">
+    <nav class="flex justify-between items-center mb-16 glass p-5 max-w-5xl mx-auto">
+        <h1 class="text-xl font-black tracking-tighter uppercase">Night <span class="neon-blue">Black View</span></h1>
+    </nav>
+    <main class="max-w-5xl mx-auto text-center space-y-10">
+        <h2 class="text-6xl font-extrabold tracking-tighter uppercase">The <span class="neon-blue">Night</span> Is Live.</h2>
+        <div class="glass inline-block px-8 py-4 border-blue-500/20">
+            <span class="text-xs uppercase tracking-[0.2em] opacity-50">ETH / USDT:</span>
+            <span id="eth-price" class="neon-blue font-mono text-xl ml-3">Syncing...</span>
+        </div>
+        <p class="text-gray-400">Tech Visionary | Ethereum Trading | Data Science</p>
+    </main>
+    <script>
+        async function updatePrice() {
+            try {
+                const res = await fetch('https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT');
+                const data = await res.json();
+                document.getElementById('eth-price').innerText = '$' + parseFloat(data.price).toFixed(2);
+            } catch (e) { document.getElementById('eth-price').innerText = 'Offline'; }
+        }
+        setInterval(updatePrice, 5000);
+        updatePrice();
+    </script>
+</body>
+</html>
