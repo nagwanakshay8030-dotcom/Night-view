@@ -2,79 +2,150 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Night Black View | Pro Terminal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>NBV | AI CRYPTO TERMINAL</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { background-color: #050505; color: #e5e7eb; font-family: 'Inter', sans-serif; overflow-x: hidden; }
-        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; }
-        .neon-text { text-shadow: 0 0 12px #3b82f6; color: #3b82f6; }
-        .chart-container { height: 450px; width: 100%; }
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
+        body { background-color: #020202; color: #e2e8f0; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
+        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .neon-blue { color: #3b82f6; text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
+        .hidden { display: none !important; }
+        .bullish { color: #10b981; text-shadow: 0 0 10px rgba(16, 185, 129, 0.5); }
+        .bearish { color: #ef4444; text-shadow: 0 0 10px rgba(239, 68, 68, 0.5); }
+        #chatbot-window { transition: all 0.3s ease; transform: translateY(100%); opacity: 0; }
+        #chatbot-window.open { transform: translateY(0); opacity: 1; }
     </style>
 </head>
-<body class="p-4 md:p-8">
-    <nav class="flex justify-between items-center mb-8 glass p-4 max-w-6xl mx-auto">
-        <h1 class="text-lg font-bold tracking-tighter uppercase">Night <span class="neon-text">Black View</span></h1>
-        <div class="text-sm font-mono bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">
-            ETH/USDT: <span id="eth-price" class="neon-text">Loading...</span>
-        </div>
-    </nav>
+<body>
 
-    <main class="max-w-6xl mx-auto space-y-6">
-        <div class="glass p-2 overflow-hidden">
-            <div class="p-3 border-b border-white/5 flex justify-between items-center">
-                <span class="text-xs uppercase tracking-widest opacity-50 font-bold">Live Market Analysis</span>
-                <span class="text-[10px] bg-green-500/20 text-green-400 px-2 py-0.5 rounded">Real-time</span>
+    <section id="auth-screen" class="min-h-screen flex items-center justify-center p-6">
+        <div class="glass w-full max-w-md p-8 rounded-3xl border border-blue-500/20 shadow-2xl shadow-blue-500/10 text-center">
+            <h1 class="text-3xl font-bold tracking-tighter italic">NIGHT <span class="neon-blue">BLACK VIEW</span></h1>
+            <p class="text-[10px] opacity-40 mt-2 tracking-[0.4em] mb-10">AI CORE v4.0</p>
+            <div class="space-y-4">
+                <input type="password" placeholder="Terminal Access Key" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl focus:border-blue-500 outline-none text-center text-sm">
+                <button onclick="launchTerminal()" class="w-full bg-blue-600 font-bold py-4 rounded-xl active:scale-95 transition-all text-xs tracking-widest uppercase">Connect Neural Link</button>
             </div>
-            <div class="chart-container" id="tradingview_widget">
-                <div class="tradingview-widget-container" style="height:100%;width:100%">
-                    <div id="tradingview_12345" style="height:100%;width:100%"></div>
-                    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-                    <script type="text/javascript">
-                    new TradingView.widget({
-                        "autosize": true,
-                        "symbol": "BINANCE:ETHUSDT",
-                        "interval": "15",
-                        "timezone": "Etc/UTC",
-                        "theme": "dark",
-                        "style": "1",
-                        "locale": "en",
-                        "toolbar_bg": "#f1f3f6",
-                        "enable_publishing": false,
-                        "hide_side_toolbar": false,
-                        "allow_symbol_change": true,
-                        "container_id": "tradingview_12345"
-                    });
-                    </script>
+        </div>
+    </section>
+
+    <div id="main-terminal" class="hidden">
+        <nav class="sticky top-0 z-50 glass border-b border-white/5 p-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-xs shadow-lg shadow-blue-500/30">NBV</div>
+                <span class="text-sm font-bold tracking-tighter uppercase">AI <span class="neon-blue">Sentinel</span></span>
+            </div>
+            <div id="market-status" class="text-[10px] font-bold px-3 py-1 rounded-full bg-white/5 uppercase">Analyzing...</div>
+        </nav>
+
+        <main class="p-4 space-y-6 pb-24">
+            <div class="grid grid-cols-2 gap-4">
+                <div class="glass p-4 rounded-2xl border-l-4 border-blue-500">
+                    <h3 class="text-[9px] opacity-50 uppercase tracking-widest font-bold">AI Mood</h3>
+                    <p id="sentiment-text" class="text-sm font-bold mt-1">Syncing...</p>
+                </div>
+                <div class="glass p-4 rounded-2xl border-l-4 border-purple-500">
+                    <h3 class="text-[9px] opacity-50 uppercase tracking-widest font-bold">Fear Index</h3>
+                    <p id="sentiment-value" class="text-sm font-mono mt-1">--</p>
                 </div>
             </div>
-        </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="glass p-6 space-y-3">
-                <h3 class="text-blue-400 font-bold uppercase text-xs tracking-widest">Vision</h3>
-                <p class="text-sm opacity-70">Exploring the intersection of Data Science and Algorithmic Trading.</p>
+            <div class="glass p-5 rounded-2xl border border-blue-500/20 bg-gradient-to-r from-blue-900/10 to-transparent">
+                <div class="flex justify-between items-center mb-4">
+                    <div>
+                        <h4 class="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Exchange Partner</h4>
+                        <p class="text-xs font-bold mt-1">Delta Exchange Terminal</p>
+                    </div>
+                    <img src="https://www.delta.exchange/wp-content/uploads/2021/01/logo.png" alt="Delta" class="h-4 opacity-70">
+                </div>
+                <button onclick="window.open('YOUR_DELTA_LINK_HERE', '_blank')" class="w-full bg-blue-600/20 border border-blue-500/40 text-blue-400 font-bold py-3 rounded-xl text-[10px] uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all">
+                    Open Trade on Delta <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                </button>
             </div>
-            <div class="glass p-6 space-y-3">
-                <h3 class="text-blue-400 font-bold uppercase text-xs tracking-widest">Status</h3>
-                <div class="flex items-center space-x-2">
-                    <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                    <span class="text-sm font-mono text-green-400">System Online</span>
+
+            <div class="glass rounded-2xl overflow-hidden border border-white/5 h-[400px]">
+                <div id="tradingview_akshay" class="h-full w-full"></div>
+            </div>
+
+            <div class="glass p-5 rounded-2xl border border-white/5">
+                <h4 class="text-[10px] font-bold text-blue-400 uppercase tracking-widest mb-4">Neural Data Stream</h4>
+                <div class="space-y-3 text-[11px] opacity-70">
+                    <div class="flex justify-between border-b border-white/5 pb-2"><span>ETH Prediction</span><span class="text-green-400">Bullish Accumulation</span></div>
+                    <div class="flex justify-between"><span>Model Status</span><span class="text-blue-400 font-mono">Active - v4.0</span></div>
                 </div>
             </div>
-        </div>
-    </main>
+        </main>
 
+        <div id="chatbot-window" class="fixed bottom-20 right-4 left-4 h-[400px] glass rounded-3xl z-50 hidden flex flex-col overflow-hidden border border-blue-500/30">
+            <div class="p-4 border-b border-white/10 bg-blue-600/10 flex justify-between items-center">
+                <span class="text-[10px] font-bold uppercase tracking-widest">NBV Intelligence Agent</span>
+                <i class="fa-solid fa-xmark cursor-pointer opacity-50" onclick="toggleChat()"></i>
+            </div>
+            <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4 text-xs">
+                <div class="bg-blue-500/10 p-3 rounded-2xl max-w-[85%] border border-blue-500/10 italic">System Ready. Delta Exchange link integrated. Welcome back, Akshay.</div>
+            </div>
+            <div class="p-4 bg-black/40 flex gap-2">
+                <input type="text" id="chat-input" placeholder="Query market data..." class="flex-1 bg-white/5 border border-white/10 p-3 rounded-xl outline-none text-[11px]">
+                <button onclick="sendMessage()" class="bg-blue-600 p-3 rounded-xl px-5 active:scale-95 transition-all"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+
+        <footer class="fixed bottom-0 w-full glass border-t border-white/10 p-4 flex justify-around items-center text-xl z-40">
+            <i class="fa-solid fa-house neon-blue"></i>
+            <i class="fa-solid fa-robot opacity-50" onclick="toggleChat()"></i>
+            <i class="fa-solid fa-chart-line opacity-30"></i>
+            <i class="fa-solid fa-user-gear opacity-30"></i>
+        </footer>
+    </div>
+
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
     <script>
-        async function fetchPrice() {
-            try {
-                const r = await fetch('https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT');
-                const d = await r.json();
-                document.getElementById('eth-price').innerText = '$' + parseFloat(d.price).toFixed(2);
-            } catch(e) { console.log("Price Sync Error"); }
+        function launchTerminal() {
+            document.getElementById('auth-screen').classList.add('hidden');
+            document.getElementById('main-terminal').classList.remove('hidden');
+            new TradingView.widget({
+                "autosize": true,
+                "symbol": "BINANCE:ETHUSDT",
+                "interval": "15",
+                "theme": "dark",
+                "container_id": "tradingview_akshay"
+            });
+            fetchAI();
         }
-        setInterval(fetchPrice, 5000);
-        fetchPrice();
+
+        async function fetchAI() {
+            try {
+                const res = await fetch('https://api.alternative.me/fng/');
+                const data = await res.json();
+                const val = data.data[0].value;
+                document.getElementById('sentiment-value').innerText = val + "/100";
+                const textEl = document.getElementById('sentiment-text');
+                const marketEl = document.getElementById('market-status');
+                
+                if(val > 50) {
+                    textEl.innerText = "BULLISH"; textEl.className = "text-sm font-bold mt-1 bullish";
+                    marketEl.innerText = "Bullish"; marketEl.className = "text-[10px] font-bold px-3 py-1 rounded-full bg-green-500/10 text-green-400 uppercase";
+                } else {
+                    textEl.innerText = "BEARISH"; textEl.className = "text-sm font-bold mt-1 bearish";
+                    marketEl.innerText = "Bearish"; marketEl.className = "text-[10px] font-bold px-3 py-1 rounded-full bg-red-500/10 text-red-400 uppercase";
+                }
+            } catch(e) { console.log("AI Error"); }
+        }
+
+        function toggleChat() { document.getElementById('chatbot-window').classList.toggle('hidden'); }
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const container = document.getElementById('chat-messages');
+            if(!input.value) return;
+            container.innerHTML += `<div class="bg-white/10 p-3 rounded-2xl max-w-[85%] self-end ml-auto border border-white/5">${input.value}</div>`;
+            setTimeout(() => {
+                container.innerHTML += `<div class="bg-blue-500/10 p-3 rounded-2xl max-w-[85%] border border-blue-500/10">Analyzing query... Market sentiment and Delta data suggests volatility. Secure your positions.</div>`;
+                container.scrollTop = container.scrollHeight;
+            }, 800);
+            input.value = ""; container.scrollTop = container.scrollHeight;
+        }
     </script>
 </body>
 </html>
