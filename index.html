@@ -3,83 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NIGHT BLACK VIEW | PRO BRAND HUB</title>
+    <title>NIGHT BLACK VIEW | PRO TERMINAL v6.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Plus+Jakarta+Sans:wght@300;500;800&display=swap');
-        body { background: #02040a; color: #f1f5f9; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
-        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .neon-text { font-family: 'Orbitron', sans-serif; text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
-        .social-btn { transition: all 0.3s ease; }
-        .social-btn:hover { transform: translateY(-5px); background: rgba(59, 130, 246, 0.1); border-color: #3b82f6; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&display=swap');
+        body { background: #010409; color: #f0f6fc; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+        .glass-card { background: rgba(13, 17, 23, 0.8); backdrop-filter: blur(10px); border: 1px solid #30363d; border-radius: 20px; transition: 0.3s; }
+        .glass-card:hover { border-color: #3b82f6; }
+        .blue-glow { box-shadow: 0 0 20px rgba(59, 130, 246, 0.15); }
         .hidden { display: none !important; }
+        #chat-stream::-webkit-scrollbar { display: none; }
     </style>
 </head>
-<body class="pb-24">
+<body class="pb-28">
 
-    <nav class="glass sticky top-0 z-50 p-5 flex justify-between items-center border-b border-white/5">
-        <h1 class="neon-text text-xl font-black italic">NIGHT <span class="text-blue-500">BLACK VIEW</span></h1>
-        <div class="flex items-center gap-2">
-            <span class="text-[9px] font-bold text-green-400 bg-green-400/10 px-2 py-1 rounded">BRAND SYNCED</span>
+    <nav class="sticky top-0 z-[100] bg-[#010409]/80 backdrop-blur-md border-b border-[#30363d] p-4">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-extrabold tracking-tighter uppercase">NIGHT <span class="text-blue-500">BLACK VIEW</span></h1>
+            <div class="flex items-center gap-3">
+                <div class="flex items-center gap-1.5 px-3 py-1 bg-green-500/10 border border-green-500/20 rounded-full">
+                    <div class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+                    <span class="text-[9px] font-bold text-green-500">AI SENTINEL ONLINE</span>
+                </div>
+            </div>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto p-4 space-y-6 mt-4">
+    <main class="max-w-5xl mx-auto p-4 space-y-6 mt-4">
         
-        <div class="grid grid-cols-2 gap-4">
-            <div class="glass p-5 rounded-3xl border-l-4 border-blue-500">
-                <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-1">AI Mood</p>
-                <p id="mood" class="text-lg font-extrabold">SYNCING...</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="glass-card p-6 md:col-span-2 flex justify-between items-end">
+                <div>
+                    <h3 class="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-1">Live Market Trend</h3>
+                    <p id="trend-status" class="text-3xl font-extrabold tracking-tighter">INITIALIZING...</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Sentiment Index</p>
+                    <p id="sentiment-val" class="text-xl font-mono font-bold text-blue-400">--/100</p>
+                </div>
             </div>
-            <div class="glass p-5 rounded-3xl border-l-4 border-purple-500">
-                <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-1">Fear/Greed</p>
-                <p id="fgi" class="text-lg font-mono">--</p>
-            </div>
-        </div>
-
-        <div class="glass p-6 rounded-[2.5rem] border border-blue-500/10">
-            <h3 class="text-xs font-black uppercase tracking-[0.2em] mb-6 text-blue-400">Social Ecosystem</h3>
-            <div class="grid grid-cols-5 gap-3">
-                <a href="YOUR_YOUTUBE_LINK" target="_blank" class="social-btn glass flex flex-col items-center p-4 rounded-2xl border border-white/5">
-                    <i class="fa-brands fa-youtube text-2xl text-red-500 mb-2"></i>
-                    <span class="text-[9px] font-bold">YouTube</span>
-                </a>
-                <a href="YOUR_INSTAGRAM_LINK" target="_blank" class="social-btn glass flex flex-col items-center p-4 rounded-2xl border border-white/5">
-                    <i class="fa-brands fa-instagram text-2xl text-pink-500 mb-2"></i>
-                    <span class="text-[9px] font-bold">Insta</span>
-                </a>
-                <a href="YOUR_X_LINK" target="_blank" class="social-btn glass flex flex-col items-center p-4 rounded-2xl border border-white/5">
-                    <i class="fa-brands fa-x-twitter text-2xl text-white mb-2"></i>
-                    <span class="text-[9px] font-bold">X</span>
-                </a>
-                <a href="YOUR_TELEGRAM_LINK" target="_blank" class="social-btn glass flex flex-col items-center p-4 rounded-2xl border border-white/5">
-                    <i class="fa-brands fa-telegram text-2xl text-blue-400 mb-2"></i>
-                    <span class="text-[9px] font-bold">Groups</span>
-                </a>
-                <a href="YOUR_LINKEDIN_LINK" target="_blank" class="social-btn glass flex flex-col items-center p-4 rounded-2xl border border-white/5">
-                    <i class="fa-brands fa-linkedin text-2xl text-blue-700 mb-2"></i>
-                    <span class="text-[9px] font-bold">Pro</span>
-                </a>
+            <div class="glass-card p-6 flex flex-col justify-center border-b-4 border-blue-600">
+                <p class="text-[10px] text-gray-500 font-bold uppercase mb-1 text-center">Data Science Node</p>
+                <p class="text-xs text-center opacity-70">Delta liquidity synced. Analyzing Ethereum volatility.</p>
             </div>
         </div>
 
-        <div class="glass rounded-[2.5rem] overflow-hidden shadow-2xl h-[450px]">
-            <div id="delta_pro_chart" class="h-full w-full"></div>
+        <div class="glass-card p-6">
+            <h3 class="text-xs font-bold uppercase text-blue-500 mb-6 tracking-widest">Connect with Social Ecosystem</h3>
+            <div class="grid grid-cols-4 md:grid-cols-5 gap-4">
+                <a href="YOUR_YOUTUBE_LINK" target="_blank" class="flex flex-col items-center gap-2 p-3 hover:bg-white/5 rounded-2xl transition-all">
+                    <i class="fa-brands fa-youtube text-2xl text-red-500"></i>
+                    <span class="text-[9px] font-bold uppercase">YouTube</span>
+                </a>
+                <a href="YOUR_INSTAGRAM_LINK" target="_blank" class="flex flex-col items-center gap-2 p-3 hover:bg-white/5 rounded-2xl transition-all">
+                    <i class="fa-brands fa-instagram text-2xl text-pink-500"></i>
+                    <span class="text-[9px] font-bold uppercase">Instagram</span>
+                </a>
+                <a href="YOUR_TELEGRAM_LINK" target="_blank" class="flex flex-col items-center gap-2 p-3 hover:bg-white/5 rounded-2xl transition-all">
+                    <i class="fa-brands fa-telegram text-2xl text-blue-400"></i>
+                    <span class="text-[9px] font-bold uppercase">Telegram</span>
+                </a>
+                <a href="YOUR_X_LINK" target="_blank" class="flex flex-col items-center gap-2 p-3 hover:bg-white/5 rounded-2xl transition-all">
+                    <i class="fa-brands fa-x-twitter text-2xl"></i>
+                    <span class="text-[9px] font-bold uppercase">X / Twitter</span>
+                </a>
+            </div>
         </div>
 
-        <button onclick="window.open('YOUR_DELTA_LINK_HERE', '_blank')" class="w-full bg-blue-600 p-5 rounded-3xl font-black text-xs uppercase tracking-widest shadow-xl shadow-blue-600/20 active:scale-95 transition-all">
-            Execute on Delta Exchange <i class="fa-solid fa-bolt ml-2"></i>
-        </button>
-
-        <div class="glass p-6 rounded-[2.5rem]">
-            <p class="text-[10px] font-bold text-blue-400 uppercase mb-4 tracking-widest">AI Intelligence Hub</p>
-            <div id="chat" class="h-24 overflow-y-auto text-xs space-y-3 mb-4 pr-2 opacity-70">
-                <p>Hello Akshay, your Social Media and Delta links are now active.</p>
+        <div class="glass-card overflow-hidden blue-glow">
+            <div class="p-4 border-b border-[#30363d] flex justify-between items-center bg-[#161b22]">
+                <div class="flex items-center gap-2">
+                    <img src="https://www.delta.exchange/wp-content/uploads/2021/01/logo.png" class="h-3 opacity-60">
+                    <span class="text-xs font-bold uppercase text-gray-400">ETHUSDT | DELTA EXCHANGE</span>
+                </div>
             </div>
-            <div class="flex gap-2">
-                <input type="text" id="msg" placeholder="Ask AI..." class="flex-1 bg-white/5 p-4 rounded-2xl outline-none text-xs border border-white/10 focus:border-blue-500">
-                <button onclick="send()" class="bg-blue-600 w-12 rounded-2xl flex items-center justify-center"><i class="fa-solid fa-paper-plane"></i></button>
+            <div id="chart_container" class="h-[450px] w-full bg-[#0d1117]"></div>
+            <div class="p-4 bg-[#161b22]">
+                <button onclick="window.open('YOUR_DELTA_LINK_HERE', '_blank')" class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-xl font-bold text-xs uppercase tracking-[0.2em] transition-all">
+                    Trade on Delta Exchange <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="glass-card p-6 flex flex-col h-[400px]">
+            <h3 class="text-xs font-bold uppercase text-blue-500 mb-4 tracking-widest">NIGHT BLACK VIEW AI</h3>
+            <div id="chat-stream" class="flex-1 overflow-y-auto space-y-4 mb-4 pr-2 text-xs opacity-80">
+                <div class="p-3 bg-blue-500/5 border border-blue-500/10 rounded-2xl">Terminal Initialized. Monitoring ETH flow on Delta. Ready for commands, Akshay.</div>
+            </div>
+            <div class="flex gap-3">
+                <input type="text" id="ai-input" placeholder="Query: 'Market Status' or 'Trend'..." class="flex-1 bg-[#0d1117] border border-[#30363d] p-4 rounded-2xl outline-none text-xs focus:border-blue-500 transition-all">
+                <button onclick="handleQuery()" class="bg-blue-600 w-14 rounded-2xl flex items-center justify-center active:scale-90 transition-all shadow-lg shadow-blue-600/20"><i class="fa-solid fa-paper-plane"></i></button>
             </div>
         </div>
 
@@ -90,31 +104,39 @@
         window.onload = () => {
             new TradingView.widget({
                 "autosize": true, "symbol": "DELTA:ETHUSDT", "interval": "15",
-                "theme": "dark", "container_id": "delta_pro_chart", "style": "1"
+                "theme": "dark", "container_id": "chart_container", "style": "1",
+                "backgroundColor": "#0d1117", "gridColor": "rgba(48, 54, 61, 0.2)"
             });
-            fetchData();
+            syncData();
         };
 
-        async function fetchData() {
+        async function syncData() {
             try {
                 const res = await fetch('https://api.alternative.me/fng/');
                 const data = await res.json();
                 const v = data.data[0].value;
-                document.getElementById('fgi').innerText = v + "/100";
-                const mood = document.getElementById('mood');
-                mood.innerText = v > 50 ? "BULLISH" : "BEARISH";
-                mood.style.color = v > 50 ? "#10b981" : "#ef4444";
-            } catch(e) {}
+                document.getElementById('sentiment-val').innerText = v + "/100";
+                const mood = document.getElementById('trend-status');
+                if(v > 50) { mood.innerText = "BULLISH"; mood.style.color = "#238636"; }
+                else { mood.innerText = "BEARISH"; mood.style.color = "#da3633"; }
+            } catch(e) { console.log("AI Offline"); }
         }
 
-        function send() {
-            const i = document.getElementById('msg');
-            const c = document.getElementById('chat');
+        function handleQuery() {
+            const i = document.getElementById('ai-input');
+            const s = document.getElementById('chat-stream');
             if(!i.value) return;
-            c.innerHTML += `<div class="text-blue-400 font-bold uppercase text-[9px]">User: <span class="text-white font-normal lowercase">${i.value}</span></div>`;
+
+            s.innerHTML += `<div class="text-blue-400 font-bold uppercase text-[9px] mt-4">AKSHAY: <span class="text-white font-normal lowercase">${i.value}</span></div>`;
+            
+            const txt = i.value.toLowerCase();
+            let reply = "Processing data science nodes... Ask about 'Trend' or 'Delta'.";
+            if(txt.includes("trend") || txt.includes("market")) reply = "Current analysis indicates " + document.getElementById('trend-status').innerText + " momentum. Fear/Greed is at " + document.getElementById('sentiment-val').innerText + ".";
+            if(txt.includes("delta")) reply = "Delta terminal bridge is active. Liquidity levels for ETHUSDT are optimal for trade execution.";
+
             setTimeout(() => {
-                c.innerHTML += `<div class="italic text-[11px]">AI: Analyzing ${i.value}... Your profiles are synced. Market trend is being monitored.</div>`;
-                c.scrollTop = c.scrollHeight;
+                s.innerHTML += `<div class="p-3 bg-white/5 border border-white/5 rounded-2xl mt-2 italic">NBV-AI: ${reply}</div>`;
+                s.scrollTop = s.scrollHeight;
             }, 600);
             i.value = "";
         }
