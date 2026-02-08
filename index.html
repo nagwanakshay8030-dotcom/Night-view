@@ -3,124 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NIGHT BLACK VIEW | THE OBSIDIAN INTERFACE</title>
+    <title>NIGHT BLACK VIEW | Intelligence Terminal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
-        body { background: #000; color: #fff; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
-        .bento-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 32px; backdrop-filter: blur(20px); transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); position: relative; overflow: hidden; }
-        .bento-card:hover { background: rgba(255, 255, 255, 0.07); border-color: #3b82f6; transform: scale(1.01); }
-        .glow { position: absolute; width: 150px; height: 150px; background: #3b82f6; filter: blur(100px); opacity: 0.1; top: -50px; right: -50px; pointer-events: none; }
-        .noise { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.03; z-index: 999; }
-        .nav-link { font-size: 10px; font-weight: 700; letter-spacing: 0.3em; color: #666; transition: 0.3s; }
-        .nav-link:hover { color: #fff; }
-        .active-section { display: block; animation: reveal 0.8s ease forwards; }
-        .hidden-section { display: none; }
-        @keyframes reveal { from { opacity: 0; filter: blur(10px); } to { opacity: 1; filter: blur(0px); } }
+        body { background: #05070a; color: #f1f5f9; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
+        .bg-pattern { background-image: radial-gradient(circle at 2px 2px, #1e293b 1px, transparent 0); background-size: 40px 40px; }
+        .glass-card { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 28px; transition: 0.4s; }
+        .glass-card:hover { border-color: #3b82f6; transform: translateY(-5px); }
+        .text-neon { color: #3b82f6; text-shadow: 0 0 15px rgba(59, 130, 246, 0.4); }
+        .nav-item:hover { color: #3b82f6; text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
     </style>
 </head>
-<body class="p-4 md:p-8">
-    <div class="noise" style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');"></div>
+<body class="bg-pattern min-h-screen flex flex-col">
 
-    <nav class="flex justify-between items-center max-w-7xl mx-auto mb-12">
-        <div class="flex items-center gap-2">
-            <div class="w-2 h-2 bg-blue-600 rounded-full animate-ping"></div>
-            <span class="text-[10px] font-black tracking-[0.5em] uppercase opacity-50">System v6.0</span>
+    <div class="w-full bg-blue-600/5 border-b border-white/5 py-2 overflow-hidden whitespace-nowrap">
+        <div class="inline-block animate-pulse text-[9px] font-bold tracking-[0.3em] px-4 text-gray-500 uppercase">
+            GOLD: $2,045.20 ▲ • NIFTY 50: 22,120.50 ▼ • NASDAQ: 16,274.90 ▲ • QUANTUM AI STATUS: ACTIVE • SYSTEM UPTIME: 99.9%
         </div>
-        <div class="flex gap-8">
-            <button onclick="nav('home')" class="nav-link">CORE</button>
-            <button onclick="nav('contact')" class="nav-link">LINK</button>
-            <button onclick="nav('terms')" class="nav-link">LEGAL</button>
+    </div>
+
+    <nav class="sticky top-4 z-[100] mx-6">
+        <div class="glass-card p-4 flex justify-between items-center px-8 shadow-2xl">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-black">N</div>
+                <h1 class="text-xs font-black tracking-widest uppercase">Night <span class="text-blue-500">Black View</span></h1>
+            </div>
+            <div class="flex gap-8 text-[10px] font-bold uppercase tracking-widest text-gray-400">
+                <button onclick="nav('home')" class="nav-item">Core</button>
+                <button onclick="nav('contact')" class="nav-item">Link</button>
+                <button onclick="nav('terms')" class="nav-item">Legal</button>
+            </div>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto">
-        
-        <section id="home" class="active-section grid grid-cols-1 md:grid-cols-4 md:grid-rows-3 gap-4 h-auto md:h-[80vh]">
+    <main class="flex-1 max-w-7xl mx-auto w-full p-6 md:p-12">
+
+        <section id="home" class="space-y-12">
             
-            <div class="bento-card md:col-span-3 md:row-span-2 p-10 flex flex-col justify-end">
-                <div class="glow"></div>
-                <h1 class="text-6xl md:text-9xl font-black tracking-tighter leading-none mb-4">NIGHT <br> <span class="text-blue-600">BLACK</span> VIEW</h1>
-                <p class="text-xs text-gray-500 max-w-sm tracking-widest font-medium uppercase">Obsidian Trading Intelligence & Data Strategy.</p>
-            </div>
-
-            <div class="bento-card md:row-span-2 p-8 flex flex-col justify-between text-center">
-                <p class="text-[10px] font-bold text-gray-500 tracking-widest uppercase">Market Pulse</p>
-                <div class="relative flex items-center justify-center py-10">
-                    <div class="absolute inset-0 border-2 border-dashed border-blue-500/20 rounded-full animate-[spin_10s_linear_infinite]"></div>
-                    <div class="text-center">
-                        <span id="fgi-val" class="text-5xl font-black">--</span>
-                        <p id="fgi-label" class="text-[9px] font-bold text-blue-500 uppercase mt-2 tracking-widest">SCANNING...</p>
-                    </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="lg:col-span-2 glass-card p-12 flex flex-col justify-center bg-gradient-to-br from-[#0f172a] to-transparent">
+                    <span class="text-blue-500 text-[10px] font-bold tracking-[0.6em] mb-6 uppercase">Multi-Market Intelligence</span>
+                    <h2 class="text-5xl md:text-7xl font-black mb-8 leading-[0.9] tracking-tighter">THE FUTURE <br>OF <span class="text-neon">QUANTUM TRADING</span></h2>
+                    <p class="text-gray-500 text-sm max-w-xl leading-relaxed">Integrated analysis of Cryptocurrencies, Global Commodities, and Advanced Tech Research. Building next-gen AI systems for market prediction.</p>
                 </div>
-                <button onclick="window.open('YOUR_DELTA_LINK')" class="bg-white text-black text-[10px] font-black py-4 rounded-full hover:bg-blue-600 hover:text-white transition-all">EXECUTE TRADE</button>
+                
+                <div class="glass-card p-10 flex flex-col items-center justify-between text-center relative">
+                    <div class="absolute top-4 right-4 text-blue-500 opacity-20"><i class="fa-solid fa-radar fa-2x"></i></div>
+                    <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Global Sentiment</p>
+                    <div class="my-6">
+                        <span id="sent-val" class="text-6xl font-black tracking-tighter">--</span>
+                        <p id="sent-text" class="text-[9px] font-bold uppercase mt-2 tracking-[0.3em]">SCANNING...</p>
+                    </div>
+                    <button onclick="window.open('YOUR_DELTA_LINK')" class="w-full py-4 text-[9px] font-black uppercase border border-blue-500/20 rounded-full hover:bg-blue-600 transition-all">Execute Terminal</button>
+                </div>
             </div>
 
-            <div class="bento-card md:col-span-2 p-4 flex flex-col">
-                <div id="chart-area" class="w-full h-full rounded-2xl overflow-hidden grayscale contrast-125 opacity-70 hover:opacity-100 transition-all duration-700"></div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="glass-card p-8 text-center space-y-3">
+                    <i class="fa-solid fa-atom text-blue-400 text-2xl"></i>
+                    <h4 class="text-[10px] font-bold uppercase">Quantum Physics</h4>
+                    <p class="text-[9px] text-gray-500 leading-relaxed uppercase">Analyzing probability nodes in market volatility.</p>
+                </div>
+                <div class="glass-card p-8 text-center space-y-3">
+                    <i class="fa-solid fa-brain text-purple-400 text-2xl"></i>
+                    <h4 class="text-[10px] font-bold uppercase">AI Agents</h4>
+                    <p class="text-[9px] text-gray-500 leading-relaxed uppercase">Neural networks for 24/7 Delta liquidity tracking.</p>
+                </div>
+                <div class="glass-card p-8 text-center space-y-3">
+                    <i class="fa-solid fa-gem text-yellow-400 text-2xl"></i>
+                    <h4 class="text-[10px] font-bold uppercase">Commodities</h4>
+                    <p class="text-[9px] text-gray-500 leading-relaxed uppercase">Tracking Gold (XAU) & Silver correlation with ETH.</p>
+                </div>
+                <div class="glass-card p-8 text-center space-y-3">
+                    <i class="fa-solid fa-microchip text-green-400 text-2xl"></i>
+                    <h4 class="text-[10px] font-bold uppercase">Data Science</h4>
+                    <p class="text-[9px] text-gray-500 leading-relaxed uppercase">Advanced Pine Script strategy development.</p>
+                </div>
             </div>
-
-            <div class="bento-card md:col-span-2 p-8 flex items-center justify-around">
-                <a href="YOUR_YT" class="text-2xl opacity-30 hover:opacity-100 hover:text-red-600 transition-all"><i class="fa-brands fa-youtube"></i></a>
-                <a href="YOUR_INSTA" class="text-2xl opacity-30 hover:opacity-100 hover:text-pink-500 transition-all"><i class="fa-brands fa-instagram"></i></a>
-                <a href="YOUR_TELE" class="text-2xl opacity-30 hover:opacity-100 hover:text-blue-400 transition-all"><i class="fa-brands fa-telegram"></i></a>
-                <a href="YOUR_X" class="text-2xl opacity-30 hover:opacity-100 transition-all"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="YOUR_GIT" class="text-2xl opacity-30 hover:opacity-100 transition-all"><i class="fa-brands fa-github"></i></a>
-            </div>
-
         </section>
 
-        <section id="contact" class="hidden-section max-w-2xl mx-auto py-20 text-center">
-            <h2 class="text-5xl font-black mb-8 italic">Establish Link_</h2>
-            <div class="bento-card p-10 space-y-4">
-                <input type="email" placeholder="ENCRYPTED@EMAIL.COM" class="w-full bg-transparent border-b border-white/10 p-4 outline-none text-center text-sm focus:border-blue-600 transition-all">
-                <button class="w-full py-6 text-[10px] font-black tracking-widest uppercase border border-white/10 rounded-full hover:bg-white hover:text-black transition-all">SEND SIGNAL</button>
+        <section id="contact" class="hidden py-20 text-center space-y-10">
+            <h2 class="text-4xl font-black italic tracking-tighter">Establish Link_</h2>
+            <div class="glass-card max-w-xl mx-auto p-12 space-y-6">
+                <input type="email" placeholder="SIGNAL_TARGET@EMAIL.COM" class="w-full bg-transparent border-b border-white/10 p-4 text-center text-xs outline-none focus:border-blue-500 transition-all">
+                <textarea placeholder="SYSTEM_MESSAGE" class="w-full bg-transparent border-b border-white/10 p-4 text-center text-xs h-32 outline-none focus:border-blue-500 transition-all"></textarea>
+                <button class="w-full py-6 rounded-full border border-blue-500/20 text-[9px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all">Transmit Message</button>
             </div>
         </section>
 
-        <section id="terms" class="hidden-section max-w-4xl mx-auto py-20">
-            <div class="bento-card p-12 text-[11px] text-gray-500 leading-relaxed uppercase tracking-widest space-y-6">
-                <h2 class="text-xl font-black text-white italic">Protocols & Liability</h2>
-                <p>1.0 High Risk Environment: Market data is speculative. Trading involves total capital risk.</p>
-                <p>2.0 Intelligence Ownership: All algorithms and brand assets are intellectual property of Akshay Nagwan.</p>
-                <p>3.0 Data Integrity: Live feeds are third-party API dependent and subject to latency.</p>
+        <section id="terms" class="hidden py-20">
+            <div class="glass-card max-w-3xl mx-auto p-12 space-y-8">
+                <h2 class="text-2xl font-black uppercase text-blue-500 italic">Legal Protocols</h2>
+                <div class="text-[10px] text-gray-500 leading-loose tracking-[0.2em] uppercase">
+                    <p><strong>01: Risk Notice:</strong> Trading in any financial market (Crypto, Stocks, Commodities) involves high risk.</p>
+                    <p><strong>02: Intellectual Property:</strong> All research data under Night Black View is proprietary to Akshay Nagwan.</p>
+                </div>
             </div>
         </section>
 
     </main>
 
-    <footer class="mt-20 py-10 text-center">
-        <p class="text-[8px] font-bold text-gray-600 tracking-[1em] uppercase">Built for the Dark • Developed by Nagwan</p>
+    <footer class="p-12 border-t border-white/5 mt-20">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="text-center md:text-left">
+                <h3 class="font-black text-lg uppercase tracking-widest italic">Night <span class="text-blue-500">Black View</span></h3>
+                <p class="text-[8px] text-gray-600 uppercase tracking-[0.4em] mt-2">© 2026 Evolving Intelligence Unit</p>
+            </div>
+            <div class="flex gap-10 text-xl text-gray-600">
+                <a href="YOUR_YT" class="hover:text-white transition-all"><i class="fa-brands fa-youtube"></i></a>
+                <a href="YOUR_INSTA" class="hover:text-white transition-all"><i class="fa-brands fa-instagram"></i></a>
+                <a href="YOUR_TELE" class="hover:text-white transition-all"><i class="fa-brands fa-telegram"></i></a>
+                <a href="YOUR_X" class="hover:text-white transition-all"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
     </footer>
 
-    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
     <script>
         function nav(id) {
-            document.querySelectorAll('main section').forEach(s => { s.classList.replace('active-section', 'hidden-section'); });
-            document.getElementById(id).classList.replace('hidden-section', 'active-section');
+            document.querySelectorAll('main section').forEach(s => { s.classList.add('hidden'); });
+            document.getElementById(id).classList.remove('hidden');
+            window.scrollTo(0,0);
         }
 
-        window.onload = () => {
-            new TradingView.widget({
-                "autosize": true, "symbol": "DELTA:ETHUSDT", "interval": "15",
-                "theme": "dark", "container_id": "chart-area", "style": "1",
-                "backgroundColor": "rgba(0,0,0,0)", "gridColor": "rgba(255,255,255,0.02)"
-            });
-            fetchPulse();
-        };
-
-        async function fetchPulse() {
+        async function updatePulse() {
             try {
                 const res = await fetch('https://api.alternative.me/fng/');
                 const data = await res.json();
                 const v = data.data[0].value;
-                document.getElementById('fgi-val').innerText = v;
-                const label = document.getElementById('fgi-label');
-                if(v > 50) { label.innerText = "BULLISH FLOW"; label.style.color = "#10b981"; }
-                else { label.innerText = "BEARISH FLOW"; label.style.color = "#ef4444"; }
+                document.getElementById('sent-val').innerText = v;
+                const t = document.getElementById('sent-text');
+                t.innerText = v > 50 ? "Bullish Flow" : "Bearish Flow";
+                t.style.color = v > 50 ? "#10b981" : "#ef4444";
             } catch(e) {}
         }
+        updatePulse();
     </script>
 </body>
 </html>
