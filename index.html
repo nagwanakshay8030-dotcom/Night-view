@@ -2,115 +2,152 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Night Black View | Delta Trading Terminal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>NIGHT BLACK VIEW | PREMIUM TERMINAL</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { background-color: #0b0e11; color: #eaecef; font-family: 'Arial', sans-serif; }
-        .card { background-color: #1e2329; border-radius: 12px; border: 1px solid #2b3139; }
-        .btn-blue { background-color: #0052ff; color: white; }
-        .hidden { display: none; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap');
+        body { background: #05070a; color: #f8fafc; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-card { background: rgba(17, 24, 39, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .premium-border { border: 1px solid rgba(59, 130, 246, 0.2); }
+        .text-gradient { background: linear-gradient(to right, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hidden { display: none !important; }
+        .nav-item { transition: all 0.3s ease; }
+        .nav-item:active { transform: scale(0.9); background: rgba(59, 130, 246, 0.1); }
     </style>
 </head>
-<body class="p-4">
+<body class="antialiased">
 
-    <section id="login-box" class="min-h-screen flex items-center justify-center">
-        <div class="card p-8 w-full max-w-sm shadow-2xl">
-            <h1 class="text-2xl font-bold text-center mb-6">NIGHT BLACK VIEW</h1>
-            <div class="space-y-4">
-                <input type="password" placeholder="Terminal Password" class="w-full bg-[#2b3139] p-3 rounded outline-none focus:border-blue-500 border border-transparent">
-                <button onclick="enterSite()" class="w-full btn-blue font-bold py-3 rounded active:scale-95 transition-all">ENTER TERMINAL</button>
+    <section id="login-screen" class="fixed inset-0 z-[100] flex items-center justify-center bg-[#05070a] px-6">
+        <div class="w-full max-w-sm text-center">
+            <div class="mb-10">
+                <div class="w-16 h-16 bg-blue-600 rounded-2xl mx-auto mb-4 flex items-center justify-center shadow-2xl shadow-blue-600/30">
+                    <i class="fa-solid fa-microchip text-2xl"></i>
+                </div>
+                <h1 class="text-3xl font-extrabold tracking-tighter uppercase">NIGHT <span class="text-blue-500">BLACK VIEW</span></h1>
+                <p class="text-[10px] text-gray-500 font-bold tracking-[0.4em] mt-2 uppercase">AI Neural System v5.0</p>
+            </div>
+            <div class="glass-card p-2 rounded-3xl premium-border">
+                <button onclick="unlockDashboard()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-5 rounded-2xl transition-all shadow-xl shadow-blue-500/20 uppercase tracking-widest text-xs">
+                    Initialize System
+                </button>
             </div>
         </div>
     </section>
 
-    <div id="dashboard" class="hidden space-y-6 pb-24">
-        <nav class="flex justify-between items-center py-4 border-b border-[#2b3139]">
-            <span class="font-bold text-lg uppercase tracking-tight">Night <span class="text-blue-500">Black View</span></span>
-            <span class="text-[10px] bg-blue-500/10 text-blue-500 px-2 py-1 rounded border border-blue-500/20 font-bold">DELTA SYNCED</span>
-        </nav>
+    <div id="app-content" class="hidden min-h-screen">
+        <header class="sticky top-0 z-50 glass-card border-b border-white/5 p-4 flex justify-between items-center">
+            <span class="font-extrabold tracking-tighter text-sm">NIGHT <span class="text-blue-500">BLACK VIEW</span></span>
+            <div class="flex items-center gap-3">
+                <div class="text-[9px] bg-green-500/10 text-green-400 px-2 py-1 rounded-full font-bold border border-green-500/20">SENTINEL LIVE</div>
+                <i class="fa-solid fa-circle-user text-xl text-gray-600"></i>
+            </div>
+        </header>
 
-        <div class="grid grid-cols-2 gap-4">
-            <div class="card p-4">
-                <p class="text-[10px] text-gray-500 uppercase font-bold">AI Analysis</p>
-                <p id="trend-text" class="text-sm font-bold mt-1">Calculating...</p>
+        <main class="p-4 space-y-6 pb-28">
+            <div class="grid grid-cols-2 gap-4">
+                <div class="glass-card p-4 rounded-3xl">
+                    <p class="text-[9px] font-bold text-gray-500 uppercase tracking-widest mb-1">AI Mood</p>
+                    <p id="sentiment-label" class="text-sm font-extrabold text-blue-400 uppercase">Analyzing...</p>
+                </div>
+                <div class="glass-card p-4 rounded-3xl">
+                    <p class="text-[9px] font-bold text-gray-500 uppercase tracking-widest mb-1">Fear/Greed</p>
+                    <p id="sentiment-value" class="text-sm font-mono font-bold">--/100</p>
+                </div>
             </div>
-            <div class="card p-4">
-                <p class="text-[10px] text-gray-500 uppercase font-bold">Market Mood</p>
-                <p id="trend-val" class="text-sm font-mono mt-1">--</p>
-            </div>
-        </div>
 
-        <div class="card overflow-hidden h-[450px] border-blue-500/30">
-            <div class="p-3 bg-[#1e2329] border-b border-[#2b3139] flex justify-between items-center">
-                <span class="text-[10px] font-bold">ETHUSDT | DELTA EXCHANGE</span>
-                <i class="fa-solid fa-chart-area text-blue-500"></i>
+            <div class="glass-card rounded-[2.5rem] overflow-hidden premium-border shadow-2xl">
+                <div class="p-5 border-b border-white/5 flex justify-between items-center">
+                    <div class="flex items-center gap-2">
+                        <img src="https://www.delta.exchange/wp-content/uploads/2021/01/logo.png" class="h-3 opacity-50">
+                        <span class="text-[10px] font-bold uppercase text-gray-400">Trading Hub</span>
+                    </div>
+                    <span class="text-[10px] font-mono text-blue-500">ETH / USDT</span>
+                </div>
+                <div id="tradingview_delta" class="h-[400px] w-full"></div>
+                <div class="p-4 bg-white/[0.02]">
+                    <button onclick="window.open('YOUR_DELTA_LINK_HERE', '_blank')" class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all">
+                        Trade on Delta Exchange <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
             </div>
-            <div id="delta_chart" class="h-full w-full"></div>
-        </div>
 
-        <button onclick="window.open('YOUR_DELTA_LINK_HERE', '_blank')" class="w-full bg-blue-600 hover:bg-blue-700 p-4 rounded-xl font-bold text-sm shadow-lg shadow-blue-500/20">
-            EXECUTE TRADE ON DELTA <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
-        </button>
+            <div class="glass-card rounded-[2.5rem] p-6 space-y-4 premium-border">
+                <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-blue-500">NBV Intelligence Agent</h3>
+                <div id="chat-stream" class="h-32 overflow-y-auto space-y-3 text-[11px] pr-2">
+                    <div class="text-gray-400 italic">"System initialized. Monitoring liquidity on Delta Exchange. Ready for your command, Akshay."</div>
+                </div>
+                <div class="relative">
+                    <input type="text" id="ai-input" placeholder="Ask AI about ETH trend..." class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl outline-none focus:border-blue-500 text-xs transition-all">
+                    <button onclick="processAI()" class="absolute right-2 top-2 bg-blue-600 w-10 h-10 rounded-xl flex items-center justify-center active:scale-90 transition-all">
+                        <i class="fa-solid fa-paper-plane text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </main>
 
-        <div class="card p-4 space-y-3">
-            <p class="text-[10px] font-bold text-blue-500 uppercase">AI Market Assistant</p>
-            <div id="messages" class="text-[11px] h-20 overflow-y-auto space-y-2 opacity-70">
-                <p>NIGHT BLACK VIEW AI is ready. Analyzing Delta Exchange liquidity...</p>
+        <footer class="fixed bottom-6 left-6 right-6 z-50">
+            <div class="glass-card rounded-[2rem] p-3 flex justify-around items-center shadow-2xl border border-white/10">
+                <div class="nav-item p-4 rounded-2xl text-blue-500"><i class="fa-solid fa-house"></i></div>
+                <div class="nav-item p-4 rounded-2xl text-gray-500 opacity-40"><i class="fa-solid fa-chart-line"></i></div>
+                <div class="nav-item p-4 rounded-2xl text-gray-500 opacity-40"><i class="fa-solid fa-microchip"></i></div>
+                <div class="nav-item p-4 rounded-2xl text-gray-500 opacity-40"><i class="fa-solid fa-gear"></i></div>
             </div>
-            <div class="flex gap-2">
-                <input type="text" id="chat-msg" placeholder="Ask about ETH trend..." class="flex-1 bg-[#2b3139] p-2 rounded text-xs outline-none">
-                <button onclick="sendChat()" class="btn-blue px-4 rounded"><i class="fa-solid fa-paper-plane"></i></button>
-            </div>
-        </div>
+        </footer>
     </div>
 
     <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
     <script>
-        function enterSite() {
-            document.getElementById('login-box').classList.add('hidden');
-            document.getElementById('dashboard').classList.remove('hidden');
+        function unlockDashboard() {
+            document.getElementById('login-screen').classList.add('hidden');
+            document.getElementById('app-content').classList.remove('hidden');
             
-            // DELTA EXCHANGE CHART INITIALIZATION
+            // DELTA EXCHANGE PRO CHART
             new TradingView.widget({
                 "autosize": true,
                 "symbol": "DELTA:ETHUSDT",
                 "interval": "15",
-                "timezone": "Etc/UTC",
                 "theme": "dark",
+                "container_id": "tradingview_delta",
                 "style": "1",
-                "locale": "en",
+                "toolbar_bg": "#05070a",
                 "enable_publishing": false,
                 "allow_symbol_change": true,
-                "container_id": "delta_chart"
+                "save_image": false,
+                "backgroundColor": "#05070a",
+                "gridColor": "rgba(42, 46, 57, 0.06)"
             });
-            updateMarket();
+            syncAI();
         }
 
-        async function updateMarket() {
+        async function syncAI() {
             try {
                 const res = await fetch('https://api.alternative.me/fng/');
                 const data = await res.json();
-                const val = data.data[0].value;
-                document.getElementById('trend-val').innerText = val + "/100";
-                const textEl = document.getElementById('trend-text');
-                if(val > 50) {
-                    textEl.innerText = "BULLISH"; textEl.style.color = "#10b981";
-                } else {
-                    textEl.innerText = "BEARISH"; textEl.style.color = "#ef4444";
-                }
-            } catch(e) { console.log("AI Sync Error"); }
+                const v = data.data[0].value;
+                document.getElementById('sentiment-value').innerText = v + "/100";
+                const label = document.getElementById('sentiment-label');
+                label.innerText = (v > 50) ? "Bullish Momentum" : "Bearish Trend";
+                label.style.color = (v > 50) ? "#10b981" : "#ef4444";
+            } catch(e) { console.log("AI Offline"); }
         }
 
-        function sendChat() {
-            const input = document.getElementById('chat-msg');
-            const box = document.getElementById('messages');
+        function processAI() {
+            const input = document.getElementById('ai-input');
+            const stream = document.getElementById('chat-stream');
             if(!input.value) return;
-            box.innerHTML += `<p class="text-blue-400">You: ${input.value}</p>`;
+
+            stream.innerHTML += `<div class="text-blue-400 font-bold uppercase text-[9px]">Akshay: <span class="text-white font-normal lowercase">${input.value}</span></div>`;
+            
+            const q = input.value.toLowerCase();
+            let ans = "Analyzing data stream... Delta chart shows strong support at current levels.";
+            if(q.includes("trend")) ans = "AI Analysis: Market is currently showing " + document.getElementById('sentiment-label').innerText + ". Trade with caution.";
+            if(q.includes("delta")) ans = "Delta terminal is synced. Liquidity looks high for ETHUSDT. You can use the button above to execute.";
+            
             setTimeout(() => {
-                box.innerHTML += `<p>AI: Current Delta chart shows consolidation. Watch the support levels.</p>`;
-                box.scrollTop = box.scrollHeight;
+                stream.innerHTML += `<div class="text-blue-500 font-bold uppercase text-[9px]">NBV-AI: <span class="text-gray-400 font-normal lowercase italic">${ans}</span></div>`;
+                stream.scrollTop = stream.scrollHeight;
             }, 600);
             input.value = "";
         }
